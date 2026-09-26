@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISMAO Client</title>
+  <style>
+    :root {
+      --bg: #080808;
+      --panel: #101010;
+      --panel-alt: #171717;
+      --line: #f2f2f2;
+      --text: #f5f5f5;
+      --muted: #a8a8a8;
+      --black: #000000;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 24px;
+    }
+
+    .menu {
+      width: 420px;
+      background: var(--panel);
+      border: 2px solid var(--line);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.03);
+      padding: 18px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--line);
+      margin-bottom: 16px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .online {
+      border: 2px solid var(--line);
+      padding: 6px 10px;
+      font-size: 10px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .welcome {
+      border: 2px solid var(--line);
+      background: var(--panel-alt);
+      padding: 12px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .welcome small {
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tab {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--line);
+      padding: 10px 8px;
+      font-size: 11px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .section {
+      background: var(--panel-alt);
+      border: 2px solid var(--line);
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .section .label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--line);
+      padding: 12px 10px;
+      min-height: 48px;
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .btn:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .btn.full {
+      width: 100%;
+      grid-column: 1 / -1;
+    }
+
+    .info {
+      display: grid;
+      gap: 8px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      font-size: 12px;
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .row .key {
+      color: var(--muted);
+    }
+
+    .row .value {
+      font-weight: 700;
+    }
+
+    .player-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .player-item {
+      background: var(--panel);
+      border: 2px solid var(--line);
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .player-item:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .player-name {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .player-joined {
+      font-size: 11px;
+      opacity: 0.9;
+    }
+
+    .footer {
+      margin-top: 12px;
+      border-top: 2px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .discord-btn {
+      width: 100%;
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--line);
+      padding: 12px;
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .discord-btn:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    @media (max-width: 520px) {
+      .menu {
+        width: 94vw;
+      }
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <div class="header">
+      <div class="title">ISMAO</div>
+      <div class="online">online</div>
+    </div>
+
+    <div class="welcome">
+      <small>Welcome</small>
+      <div>welcome, <strong>ismao_discord</strong></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active">Main</button>
+      <button class="tab">Players</button>
+      <button class="tab">Settings</button>
+    </div>
+
+    <div class="section">
+      <span class="label">Movement</span>
+      <div class="button-grid">
+        <button class="btn">Fly</button>
+        <button class="btn">Stop Flying</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="label">Audio</span>
+      <button class="btn full" onclick="window.open('https://soundboard.gg','_blank')">Soundboard</button>
+    </div>
+
+    <div class="section">
+      <span class="label">Avatar</span>
+      <div class="button-grid">
+        <button class="btn">Auto Copy Avatar</button>
+        <button class="btn">Auto Anti-Copy Avatar</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="label">Player Info</span>
+      <div class="player-list">
+        <div class="player-item">
+          <div class="player-name">Player One</div>
+          <div class="player-joined">Joined: March 12, 2024 (Tuesday)</div>
+        </div>
+        <div class="player-item">
+          <div class="player-name">Player Two</div>
+          <div class="player-joined">Joined: January 5, 2024 (Friday)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="label">Profile</span>
+      <div class="info">
+        <div class="row"><span class="key">Name</span><span class="value">Player</span></div>
+        <div class="row"><span class="key">Joined</span><span class="value">Mar 12, 2024</span></div>
+        <div class="row"><span class="key">Avatar</span><span class="value">Enabled</span></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="discord-btn">Join Discord</button>
+    </div>
+  </div>
+</body>
+</html>
